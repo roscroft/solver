@@ -23,7 +23,7 @@ class Solver():
         num_elems = len(top)
         try:
             output = self.solve_tower(num_elems, top, right, bottom, left)
-        except Exception:
+        except ArithmeticError:
             await ctx.send("No solution found. Check your input.")
             traceback.print_exc()
         else:
