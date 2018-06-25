@@ -110,13 +110,17 @@ function solve_tower(n_max, top, right, bottom, left)
     end
     #= print(model) =#
     #= println("All constraints added.") =#
-    solve(model)
-    #= println("Model solved!") =#
-    soln = convert.(Int64, getvalue(x))
-    output = ""
-    for idx = 1:n_max
-        output = string(output, "\n",soln[idx,:])
+    status = solve(model)
+    if status != :Optimal
+        output = None
+    else
+        #= println("Model solved!") =#
+        soln = convert.(Int64, getvalue(x))
+        output = ""
+        for idx = 1:n_max
+            output = string(output, "\n",soln[idx,:])
+        end
+        #= println(output) =#
     end
-    #= println(output) =#
     return output
 end

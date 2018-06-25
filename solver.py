@@ -21,11 +21,9 @@ class Solver():
         bottom = list(map(int, bottom.split(" ")))
         left = list(map(int, left.split(" ")))
         num_elems = len(top)
-        try:
-            output = self.solve_tower(num_elems, top, right, bottom, left)
-        except Exception:
+        output = self.solve_tower(num_elems, top, right, bottom, left)
+        if output is None:
             await ctx.send("No solution found. Check your input.")
-            traceback.print_exc()
         else:
             await ctx.send("Solution found!")
             await ctx.send(output)
